@@ -1,0 +1,26 @@
+.textTransform {
+  background-color: #1a1b1d;
+  width: 100%;
+  height: 100vh;
+  font-family: "Lanze-Variable";
+  display: flex;
+  align-items: flex-end;
+
+  &__content {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  &__letter {
+    font-size: 15vw;
+    display: inline-block;
+    color: white;
+    font-variation-settings: "YTAS" 0; // Valeur de base
+    transition: font-variation-settings 0.3s ease;
+
+    &:hover {
+      font-variation-settings: "YTAS" 200;
+    }
+  }
+}

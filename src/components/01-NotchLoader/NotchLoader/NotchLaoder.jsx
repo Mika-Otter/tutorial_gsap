@@ -13,7 +13,7 @@ export default function NotchLoader({ setIsLoader, timeline }) {
   useGSAP(() => {
     timeline
       .to(notchHorizontalRef.current, {
-        gap: `2vh`,
+        gap: `4vh`,
         duration: 1,
         ease: "power2.out",
       })
