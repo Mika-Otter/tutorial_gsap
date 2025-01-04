@@ -1,6 +1,30 @@
+import { useRef } from "react";
 import s from "./Home.module.scss";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Home() {
+  const titleRef = useRef(null);
+
+  useGSAP(() => {
+    const items = document.querySelectorAll("[data-home-item]");
+    const tl = gsap.timeline({ paused: true });
+
+    tl.from(titleRef.current, {
+      duration: 1,
+      y: 100,
+      opacity: 0,
+      ease: "power2.out",
+    }).from(items, {
+      duration: 0.5,
+      opacity: 0,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+
+    tl.play();
+  }, []);
+
   return (
     <main className={s.home}>
       <video
@@ -11,14 +35,21 @@ export default function Home() {
         loop
       />
       <nav className={s.home__nav}>
-        <span>Services</span>
-        <span>About</span>
-        <span>Contact</span>
+        <span data-home-item>Services</span>
+        <span data-home-item>About</span>
+        <span data-home-item>Contact</span>
       </nav>
-      <h1 className={s.title}>Take to the skies</h1>
+      <h1 className={s.home__title} ref={titleRef}>
+        Take to <br />
+        the skies
+      </h1>
       <div className={s.home__bottom}>
-        <span className={s.home__bottom__span}>Discover new horizons</span>
-        <span className={s.home__bottom__span}>Scroll to explore</span>
+        <span className={s.home__bottom__span} data-home-item>
+          Discover new horizons
+        </span>
+        <span className={s.home__bottom__span} data-home-item>
+          Scroll to explore
+        </span>
       </div>
     </main>
   );
