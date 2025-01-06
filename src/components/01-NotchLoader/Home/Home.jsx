@@ -5,7 +5,6 @@ import gsap from "gsap";
 
 export default function Home({ timeline }) {
   const titleRef = useRef(null);
-  const tlRef = useRef(null);
 
   useGSAP(() => {
     const items = document.querySelectorAll("[data-home-item]");
