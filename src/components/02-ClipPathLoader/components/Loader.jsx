@@ -19,9 +19,9 @@ export default function Loader({ setIsLoader, timeline }) {
           amount: 3,
           from: "end",
         },
+        onComplete: () => setIsLoader(false),
       })
-      .addLabel("loaderComplete")
-      .then(() => setIsLoader(false));
+      .addLabel("loaderComplete");
 
     timeline.play();
   }, []);

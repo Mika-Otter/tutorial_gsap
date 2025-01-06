@@ -2,11 +2,34 @@ import React, { useRef, useState } from "react";
 import s from "./ClipPathLoader.module.scss";
 import Loader from "./components/Loader";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function ClipPathLoader() {
   const [isLoader, setIsLoader] = useState(true);
 
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
+
+  useGSAP(() => {
+    mainTimeline
+      .from(
+        "[data-clippath-item]",
+        {
+          duration: 1,
+          y: 30,
+          opacity: 0,
+          ease: "power2.inOut",
+        },
+        "loaderComplete"
+      )
+      .from("[data-clippath-img]", {
+        clipPath: "inset(100% 0 0 0)",
+        duration: 1,
+        ease: "power2.out",
+        stagger: {
+          amount: 1,
+        },
+      });
+  });
 
   return (
     <>
@@ -16,14 +39,14 @@ export default function ClipPathLoader() {
           <span className={s.nav__logo} data-clippath-item>
             [Architectures]
           </span>
-          <span className={s.nav__item} data-clippath-item>
+          <span className={s.nav__link} data-clippath-item>
             Projects
           </span>
-          <span className={s.nav__item} data-clippath-item>
+          <span className={s.nav__link} data-clippath-item>
             Agency
           </span>
-          <span className={s.nav__item} data-clippath-item>
-            Menu <span className={s.nav__item__icon}>+</span>
+          <span className={s.nav__menu} data-clippath-item>
+            Menu <span className={s.nav__menu__icon}>+</span>
           </span>
         </nav>
         <section className={s.content}>
