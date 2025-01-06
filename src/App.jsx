@@ -4,6 +4,7 @@ import NotchLoader from "./components/01-NotchLoader/NotchLoader/NotchLaoder";
 import "./global.scss";
 import gsap from "gsap";
 import TextTransformHover from "./components/XX-TextTransformHover/TextTransformHover";
+import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
 
 export default function App() {
   // const [isLoader, setIsLoader] = useState(true);
@@ -16,6 +17,7 @@ export default function App() {
       )}
       <Home timeline={mainTimeline} /> */}
       {/* <TextTransformHover /> */}
+      <ClipPathLoader />
     </>
   );
 }

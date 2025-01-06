@@ -1,0 +1,54 @@
+@use "../../../public/styles/theme.scss" as *;
+
+.clipPathLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f7f5f5;
+  padding: 2vh 1.3vw;
+  font-family: "NeueMontreal-Medium";
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1vw;
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    font-size: 1.3vw;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    &__icon {
+      font-size: 1.7vw;
+    }
+  }
+}
+
+.content {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1vw;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 1vw;
+
+    &__empty {
+      width: 100%;
+    }
+
+    &__img {
+      width: 100%;
+    }
+  }
+}
