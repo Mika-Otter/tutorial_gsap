@@ -8,7 +8,7 @@ export default function Home({ timeline }) {
 
   useGSAP(() => {
     const items = document.querySelectorAll("[data-home-item]");
-    timeline
+    timeline.current
       .from(
         titleRef.current,
         {

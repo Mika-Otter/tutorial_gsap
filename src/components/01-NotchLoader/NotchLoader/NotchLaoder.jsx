@@ -11,7 +11,7 @@ export default function NotchLoader({ setIsLoader, timeline }) {
   const formatNumber = (num) => num.toString().padStart(3, "0");
 
   useGSAP(() => {
-    timeline
+    timeline.current
       .to(notchHorizontalRef.current, {
         gap: `4vh`,
         duration: 1,
@@ -55,7 +55,7 @@ export default function NotchLoader({ setIsLoader, timeline }) {
       )
       .call(() => setIsLoader(false));
 
-    timeline.play();
+    timeline.current.play();
   }, []);
 
   return (
