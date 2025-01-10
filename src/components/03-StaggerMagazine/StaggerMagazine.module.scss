@@ -1,0 +1,59 @@
+@use "../../../public/styles/theme.scss" as *;
+
+.staggerMagazine {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  &__title {
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "SelviaGenatu-Medium";
+    font-weight: 100;
+    font-size: 2.5vw;
+    // color: $primary-color-darkblue;
+    color: #fff;
+    mix-blend-mode: difference;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      border-radius: 5px;
+      height: 0.04em;
+      bottom: 0;
+      left: 0;
+      background: currentcolor;
+      transform-origin: bottom right;
+      transition: transform 0.4s ease-out;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  &__rects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr); // 12 colonnes
+    grid-template-rows: repeat(20, 1fr); // 10 lignes
+    gap: 0px;
+    padding: 0px;
+
+    &__rect {
+      width: 100%;
+      height: 100%;
+      min-height: 30px;
+      background-color: #ffffff;
+    }
+  }
+}

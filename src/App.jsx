@@ -1,19 +1,11 @@
 import { useRef, useState } from "react";
-import Home from "./components/01-NotchLoader/Home/Home";
-import NotchLoader from "./components/01-NotchLoader/NotchLoader/NotchLaoder";
 import "./global.scss";
-import gsap from "gsap";
+import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
 
 export default function App() {
-  const [isLoader, setIsLoader] = useState(true);
-  const mainTimeline = useRef(gsap.timeline({ paused: true }));
-
   return (
     <>
-      {isLoader && (
-        <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
-      )}
-      <Home timeline={mainTimeline} />
+      <StaggerMagazine />
     </>
   );
 }
@@ -29,4 +21,16 @@ export default function App() {
 // import TextTransformHover from "./components/03-TextTransformHover/TextTransformHover";
 {
   /* <TextTransformHover /> */
+}
+
+////NotchLoader
+// import Home from "./components/01-NotchLoader/Home/Home";
+// import NotchLoader from "./components/01-NotchLoader/NotchLoader/NotchLaoder";
+// const [isLoader, setIsLoader] = useState(true);
+// const mainTimeline = useRef(gsap.timeline({ paused: true }));
+{
+  /* {isLoader && (
+        <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
+      )}
+      <Home timeline={mainTimeline} /> */
 }
