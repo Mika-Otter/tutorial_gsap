@@ -14,21 +14,25 @@ export default function ClipPathLoader() {
       .from(
         "[data-clippath-item]",
         {
-          duration: 1,
+          duration: 0.6,
           y: 30,
           opacity: 0,
           ease: "power2.inOut",
         },
         "loaderComplete"
       )
-      .from("[data-clippath-img]", {
-        clipPath: "inset(100% 0 0 0)",
-        duration: 1,
-        ease: "power2.out",
-        stagger: {
-          amount: 1,
+      .from(
+        "[data-clippath-img]",
+        {
+          clipPath: "inset(100% 0 0 0)",
+          duration: 1,
+          ease: "power2.out",
+          stagger: {
+            amount: 0.8,
+          },
         },
-      });
+        "<-0.1"
+      );
   });
 
   return (
@@ -37,7 +41,7 @@ export default function ClipPathLoader() {
       <main className={s.clipPathLoader}>
         <nav className={s.nav}>
           <span className={s.nav__logo} data-clippath-item>
-            [Architectures]
+            [AL Photography]
           </span>
           <span className={s.nav__link} data-clippath-item>
             Projects
@@ -52,20 +56,20 @@ export default function ClipPathLoader() {
         <section className={s.content}>
           <div className={s.content__row}>
             <img
-              src="/images/architecture-1.webp"
+              src="/images/clippath/clippath-1.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
             />
             <img
-              src="/images/architecture-2.webp"
+              src="/images/clippath/clippath-5.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
             />
             <div className={s.content__row__empty}></div>
             <img
-              src="/images/architecture-3.webp"
+              src="/images/clippath/clippath-6.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
@@ -75,20 +79,20 @@ export default function ClipPathLoader() {
           <div className={s.content__row}>
             <div className={s.content__row__empty}></div>
             <img
-              src="/images/architecture-4.webp"
+              src="/images/clippath/clippath-4.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
             />
             <img
-              src="/images/architecture-11.webp"
+              src="/images/clippath/clippath-3.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
             />
 
             <img
-              src="/images/architecture-6.webp"
+              src="/images/clippath/clippath-2.webp"
               alt="archi 1"
               className={s.content__row__img}
               data-clippath-img
