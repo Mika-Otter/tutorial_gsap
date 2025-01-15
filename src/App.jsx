@@ -3,11 +3,15 @@ import "./global.scss";
 import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
 import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
 import Loader from "./components/04-StaggerThanks/Loader";
+import Landing from "./components/04-StaggerThanks/Landing";
+import gsap from "gsap";
 
 export default function App() {
+  const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
   return (
     <>
-      <Loader />
+      <Loader timeline={mainTimeline} />
+      <Landing timeline={mainTimeline} />
     </>
   );
 }

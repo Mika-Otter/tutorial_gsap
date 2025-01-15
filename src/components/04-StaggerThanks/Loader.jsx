@@ -4,21 +4,20 @@ import s from "./Loader.module.scss";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-export default function Loader() {
+export default function Loader({ timeline }) {
   useGSAP(() => {
     const letters = document.querySelectorAll("[data-loader-letter]");
     const rects = document.querySelectorAll("[data-loader-box]");
 
-    const tl = gsap.timeline({ paused: true });
-
-    tl.from(letters, {
-      opacity: 0,
-      duration: 0.05,
-      stagger: {
-        amount: 0.4,
-        from: "start",
-      },
-    })
+    timeline
+      .from(letters, {
+        opacity: 0,
+        duration: 0.05,
+        stagger: {
+          amount: 0.4,
+          from: "start",
+        },
+      })
       .to(letters, {
         opacity: 0,
         duration: 0.05,
@@ -28,6 +27,7 @@ export default function Loader() {
           from: "end",
         },
       })
+      .addLabel("loaderComplete")
       .to(
         rects,
         {
@@ -38,9 +38,10 @@ export default function Loader() {
             from: "random",
           },
         },
-        ">-0.1"
+        ">-0.08"
       );
-    tl.play();
+
+    timeline.play();
   }, []);
   return (
     <section className={s.loader}>
