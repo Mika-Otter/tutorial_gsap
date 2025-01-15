@@ -1,18 +1,43 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./global.scss";
 import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
 import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
 import Loader from "./components/04-StaggerThanks/Loader";
 import Landing from "./components/04-StaggerThanks/Landing";
 import gsap from "gsap";
+import ThankYou from "./components/04-StaggerThanks/ThankYou";
+import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
+  const lenisRef = useRef(null);
+
+  useEffect(() => {
+    function update(time) {
+      lenisRef.current?.raf?.(time * 1000);
+    }
+    gsap.ticker.add(update);
+    return () => gsap.ticker.remove(update);
+  }, []);
+
   return (
-    <>
+    <ReactLenis
+      ref={lenisRef}
+      options={{
+        duration: 0.6,
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      }}
+      root
+    >
       <Loader timeline={mainTimeline} />
       <Landing timeline={mainTimeline} />
-    </>
+      <ThankYou />
+    </ReactLenis>
   );
 }
 

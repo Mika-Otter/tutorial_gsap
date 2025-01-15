@@ -25,7 +25,8 @@
     position: fixed;
     top: 3vh;
     left: 2vw;
-    font-size: 2vw;
+    z-index: 10;
+    font-size: 3vw;
     color: #31ff1e;
     font-family: "Rader-Regular";
   }
@@ -33,6 +34,7 @@
   &__nav {
     position: fixed;
     right: 2vw;
+    z-index: 10;
     font-size: 1.5vw;
     color: #0c0c0c;
     background-color: #31ff1e;
