@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import s from "./Landing.module.scss";
 
 import gsap from "gsap";
@@ -10,56 +10,60 @@ gsap.registerPlugin(SplitText);
 export default function Landing({ timeline }) {
   const bgRef = useRef(null);
   const textRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  useGSAP(() => {
-    const splitText = new SplitText(textRef.current, {
-      type: "chars",
-      charsClass: "split-char",
-    });
+  useGSAP(
+    () => {
+      const splitText = new SplitText(textRef.current, {
+        type: "words, chars",
+      });
 
-    const items = document.querySelectorAll("[data-loading-item]");
-    const stars = document.querySelectorAll("[data-loading-star]");
+      const items = document.querySelectorAll("[data-loading-item]");
+      const stars = document.querySelectorAll("[data-loading-star]");
 
-    timeline
-      .from(
-        bgRef.current,
-        {
-          scale: 1.7,
-          filter: "blur(20px)",
-          duration: 1,
-          ease: "power2.inOut",
-        },
-        "loaderComplete"
-      )
-      .from(
-        splitText.chars,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.3,
-          stagger: {
-            amount: 1,
-            from: "start",
+      timeline
+        .from(
+          bgRef.current,
+          {
+            scale: 1.7,
+            filter: "blur(20px)",
+            duration: 1,
+            ease: "power2.inOut",
           },
-        },
-        ">"
-      )
-      .from(items, {
-        opacity: 0,
-        duration: 0.3,
-      })
-      .from(
-        stars,
-        {
+          "loaderComplete"
+        )
+        .from(
+          splitText.chars,
+          {
+            opacity: 0,
+            y: 30,
+            duration: 0.3,
+            stagger: {
+              amount: 1,
+              from: "start",
+            },
+          },
+          ">"
+        )
+        .from(items, {
           opacity: 0,
           duration: 0.3,
-        },
-        "<"
-      );
-  }, []);
+        })
+        .from(
+          stars,
+          {
+            opacity: 0,
+            duration: 0.3,
+          },
+          "<"
+        );
+    },
+    [],
+    { scope: sectionRef }
+  );
 
   return (
-    <main className={s.landing}>
+    <main className={s.landing} ref={sectionRef}>
       <div className={s.landing__background}>
         <img
           src="/images/staggerThanks/landing.jpg"

@@ -12,6 +12,7 @@ export default function Loader({ timeline }) {
     timeline
       .from(letters, {
         opacity: 0,
+        delay: 0.5,
         duration: 0.05,
         stagger: {
           amount: 0.4,
@@ -31,6 +32,7 @@ export default function Loader({ timeline }) {
       .to(
         rects,
         {
+          delay: 0.5,
           opacity: 0,
           duration: 0.05,
           stagger: {
@@ -38,13 +40,16 @@ export default function Loader({ timeline }) {
             from: "random",
           },
         },
-        ">-0.08"
-      );
+        ">"
+      )
+      .set("[data-loader]", {
+        display: "none",
+      });
 
     timeline.play();
   }, []);
   return (
-    <section className={s.loader}>
+    <section className={s.loader} data-loader>
       <div className={s.loader__box}>
         {Array.from({ length: 120 }, (_, i) => (
           <div className={s.loader__rect} key={i} data-loader-box />

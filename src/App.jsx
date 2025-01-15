@@ -28,7 +28,7 @@ export default function App() {
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1,
+        wheelMultiplier: 0.8,
         touchMultiplier: 2,
         infinite: false,
       }}

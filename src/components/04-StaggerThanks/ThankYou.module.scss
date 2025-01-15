@@ -1,7 +1,7 @@
 .thankyou {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 102vh;
   overflow: hidden;
 
   display: flex;
@@ -20,7 +20,7 @@
   }
 
   &__rect {
-    width: calc(100% / 10);
+    width: calc(100% / 20);
     height: calc(100% / 12);
     background-color: #0c0c0c;
   }
@@ -28,17 +28,123 @@
   &__just {
     color: #f5f5f5;
     font-family: "Rader-Regular";
-    font-size: 10vw;
-    z-index: 2;
+    font-size: 20vw;
+    z-index: 1;
   }
 
   &__thanks {
     color: #0c0c0c;
     position: absolute;
-    bottom: -3vh;
+    bottom: -2vh;
     left: 2vw;
     font-family: "Rader-Regular";
-    font-size: 15vw;
+    font-size: 20vw;
     z-index: 2;
   }
+
+  &__hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &__heart {
+      position: absolute;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.heart1 {
+  top: 13%;
+  left: -2vw;
+  width: 6vw;
+  height: 6vw;
+  transform: rotate(35deg);
+  z-index: 1;
+}
+.heart2 {
+  top: -5vw;
+  left: 15vw;
+  width: 18vw;
+  height: 18vw;
+  transform: rotate(27deg);
+  z-index: 1;
+}
+
+.heart3 {
+  top: 15%;
+  left: 46vw;
+  width: 13vw;
+  height: 13vw;
+  transform: rotate(-27deg);
+  z-index: 1;
+}
+
+.heart4 {
+  top: -8vw;
+  left: 53vw;
+  width: 44vw;
+  height: 44vw;
+  transform: rotate(32deg);
+  z-index: 10;
+}
+
+.heart5 {
+  bottom: 11vh;
+  z-index: 10;
+  left: 3vw;
+  width: 31vw;
+  height: 31vw;
+  transform: rotate(-32deg);
+}
+
+.heart6 {
+  bottom: 1vh;
+  z-index: 10;
+  left: 13vw;
+  width: 7vw;
+  height: 7vw;
+  transform: rotate(42deg);
+}
+
+.heart7 {
+  bottom: 1vh;
+  z-index: 1;
+  left: 33vw;
+  width: 17vw;
+  height: 17vw;
+  transform: rotate(42deg);
+}
+
+.heart8 {
+  bottom: 35%;
+  z-index: 10;
+  left: 54vw;
+  width: 6.5vw;
+  height: 6.5vw;
+  transform: rotate(-110deg);
+}
+
+.heart9 {
+  bottom: 17%;
+  z-index: 1;
+  right: 9vw;
+  width: 14vw;
+  height: 14vw;
+  transform: rotate(23deg);
+}
+
+.heart10 {
+  bottom: -3vh;
+  z-index: 1;
+  right: 15vw;
+  width: 6vw;
+  height: 6vw;
+  transform: rotate(-32deg);
 }
