@@ -2,13 +2,12 @@ import { useRef, useState } from "react";
 import "./global.scss";
 import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
 import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
+import Loader from "./components/04-StaggerThanks/Loader";
 
 export default function App() {
   return (
     <>
-      {/* <StaggerMagazine /> */}
-
-      <ClipPathLoader />
+      <Loader />
     </>
   );
 }
@@ -36,4 +35,9 @@ export default function App() {
         <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
       )}
       <Home timeline={mainTimeline} /> */
+}
+
+//// StaggerMagazine
+{
+  /* <StaggerMagazine /> */
 }
