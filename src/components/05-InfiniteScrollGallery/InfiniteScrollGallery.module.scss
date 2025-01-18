@@ -1,0 +1,49 @@
+@use "../../../public/styles/theme.scss" as *;
+
+.scrollGallery {
+  background-color: rgb(10, 10, 10);
+
+  &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(10, 10, 10);
+
+    &__logo,
+    &__contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 12vw;
+      color: white;
+      font-family: "Valve-ExtraBoldItalic";
+      font-size: 1.5vw;
+    }
+
+    &__infiniteBan {
+      width: 70vw;
+      font-size: 1.7vw;
+      height: 100%;
+      overflow: hidden;
+      color: white;
+      text-wrap: nowrap;
+      display: flex;
+      align-items: center;
+      font-family: "Valve-ExtraBold";
+
+      &__wrapper {
+        display: flex;
+        position: relative;
+        white-space: nowrap;
+      }
+
+      &__text {
+        padding: 0 20px;
+      }
+    }
+  }
+}

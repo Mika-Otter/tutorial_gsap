@@ -1,12 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./global.scss";
-import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
-import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
-import Loader from "./components/04-StaggerThanks/Loader";
-import Landing from "./components/04-StaggerThanks/Landing";
 import gsap from "gsap";
-import ThankYou from "./components/04-StaggerThanks/ThankYou";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
+import InfiniteScrollGallery from "./components/05-InfiniteScrollGallery/InfiniteScrollGallery";
+import Gallery from "./components/05-InfiniteScrollGallery/Gallery";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
@@ -34,9 +31,8 @@ export default function App() {
       }}
       root
     >
-      <Loader timeline={mainTimeline} />
-      <Landing timeline={mainTimeline} />
-      <ThankYou />
+      <InfiniteScrollGallery />
+      <Gallery />
     </ReactLenis>
   );
 }
@@ -67,6 +63,28 @@ export default function App() {
 }
 
 //// StaggerMagazine
+//import StaggerMagazine from "./components/03-StaggerMagazine/StaggerMagazine";
 {
   /* <StaggerMagazine /> */
 }
+
+//// StaggerThanks
+// import Loader from "./components/04-StaggerThanks/Loader";
+// import Landing from "./components/04-StaggerThanks/Landing";
+// import ThankYou from "./components/04-StaggerThanks/ThankYou";
+{
+  /* <Loader timeline={mainTimeline} />
+      <Landing timeline={mainTimeline} />
+      <ThankYou /> */
+}
+
+// $counter = 1
+// $files = Get-ChildItem -Path "." -File
+// $name = "VotreNomDeFichier"
+
+// foreach ($file in $files) {
+//     $extension = $file.Extension
+//     $newName = "$name-$counter$extension"
+//     Rename-Item -Path $file.FullName -NewName $newName
+//     $counter++
+// }
