@@ -5,6 +5,8 @@ import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import InfiniteScrollGallery from "./components/05-InfiniteScrollGallery/InfiniteScrollGallery";
 import Gallery from "./components/05-InfiniteScrollGallery/Gallery";
 import LoaderGallery from "./components/05-InfiniteScrollGallery/LoaderGallery";
+import InfiniteBanner from "./components/06-InfiniteBanner/InfiniteBanner";
+import Loader from "./components/06-InfiniteBanner/Loader";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
@@ -32,9 +34,11 @@ export default function App() {
       }}
       root
     >
-      <LoaderGallery />
+      <Loader />
+      <InfiniteBanner />
+      {/* <LoaderGallery />
       <InfiniteScrollGallery />
-      <Gallery />
+      <Gallery /> */}
     </ReactLenis>
   );
 }
