@@ -12,12 +12,13 @@ export default function Loader() {
     const tl = gsap.timeline({ paused: true });
 
     tl.from(textRef.current, {
-      delay: 0.5,
+      delay: 1,
       duration: 0.9,
       y: "100%",
       ease: "power4.inOut",
     })
       .to(textRef.current, {
+        delay: 0.5,
         duration: 0.7,
         y: "-100%",
         ease: "power4.in",

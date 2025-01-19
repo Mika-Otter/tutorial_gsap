@@ -50,9 +50,7 @@
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    width: 100%;
-    overflow: hidden;
-    margin-top: 20vh;
+    margin-top: 15vh;
     position: relative;
 
     &__controls {
@@ -83,6 +81,7 @@
       padding-right: 2vw;
       display: flex;
       flex-wrap: nowrap;
+
       gap: 2vw;
       &__image {
         width: 20vw;
