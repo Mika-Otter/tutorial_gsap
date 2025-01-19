@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import InfiniteScrollGallery from "./components/05-InfiniteScrollGallery/InfiniteScrollGallery";
 import Gallery from "./components/05-InfiniteScrollGallery/Gallery";
+import LoaderGallery from "./components/05-InfiniteScrollGallery/LoaderGallery";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
@@ -31,6 +32,7 @@ export default function App() {
       }}
       root
     >
+      <LoaderGallery />
       <InfiniteScrollGallery />
       <Gallery />
     </ReactLenis>

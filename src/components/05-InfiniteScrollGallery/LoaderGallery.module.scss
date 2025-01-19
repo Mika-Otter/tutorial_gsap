@@ -1,0 +1,18 @@
+@use "../../../public/styles/theme.scss" as *;
+
+.loader {
+  width: 100%;
+  height: 100svh;
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 20;
+  &__logo {
+    font-size: 15vw;
+    opacity: 1;
+    color: white;
+    font-family: "Valve-ExtraBoldItalic";
+  }
+}

@@ -66,6 +66,9 @@ export default function InfiniteScrollGallery() {
         </div>
         <span className={s.scrollGallery__nav__contact}>Contact</span>
       </nav>
+      <div className={s.scrollGallery__menu}>
+        <span>+</span> Menu
+      </div>
     </main>
   );
 }
