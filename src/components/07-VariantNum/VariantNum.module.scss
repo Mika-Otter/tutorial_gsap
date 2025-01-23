@@ -1,0 +1,69 @@
+@use "../../../public/styles/theme.scss" as *;
+
+.variantNum {
+  background-color: #060606;
+  color: #fbfbf9;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "MonumentGrotesk-Bold";
+
+  &__header {
+    display: flex;
+    padding: 2vh 3vw;
+    justify-content: space-between;
+    font-family: "MonumentGrotesk-Bold";
+    font-size: 3vw;
+    line-height: 1.1;
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      align-items: flex-end;
+    }
+  }
+
+  &__center {
+    margin-top: -10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4vw;
+    padding: 1vh 3vw;
+    font-size: 35vw;
+    line-height: 1;
+    font-family: "MonumentGrotesk-Bold";
+    &__left,
+    &__right {
+      height: 30vw;
+    }
+    &__right {
+      &__numbers {
+        display: flex;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+    &__center {
+      height: 9vw;
+      display: flex;
+      width: 15vw;
+      justify-content: center;
+
+      align-items: center;
+      &__versus {
+        font-size: 7vw;
+      }
+    }
+  }
+
+  &__footer {
+    padding: 2vh 3vw;
+    display: flex;
+    justify-content: flex-end;
+    font-family: "MonumentGrotesk-Bold";
+  }
+}

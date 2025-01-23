@@ -5,8 +5,7 @@ import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import InfiniteScrollGallery from "./components/05-InfiniteScrollGallery/InfiniteScrollGallery";
 import Gallery from "./components/05-InfiniteScrollGallery/Gallery";
 import LoaderGallery from "./components/05-InfiniteScrollGallery/LoaderGallery";
-import InfiniteBanner from "./components/06-InfiniteBanner/InfiniteBanner";
-import Loader from "./components/06-InfiniteBanner/Loader";
+import VariantNum from "./components/07-VariantNum/VariantNum";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
@@ -34,11 +33,10 @@ export default function App() {
       }}
       root
     >
-      <Loader />
-      <InfiniteBanner />
       {/* <LoaderGallery />
       <InfiniteScrollGallery />
       <Gallery /> */}
+      <VariantNum />
     </ReactLenis>
   );
 }
@@ -83,6 +81,16 @@ export default function App() {
       <Landing timeline={mainTimeline} />
       <ThankYou /> */
 }
+
+//// InfiniteBanner
+// import InfiniteBanner from "./components/06-InfiniteBanner/InfiniteBanner";
+// import Loader from "./components/06-InfiniteBanner/Loader";
+{
+  /* <Loader />
+<InfiniteBanner /> */
+}
+
+//// RENAME FILES POWERSHELL
 
 // $counter = 1
 // $files = Get-ChildItem -Path "." -File
