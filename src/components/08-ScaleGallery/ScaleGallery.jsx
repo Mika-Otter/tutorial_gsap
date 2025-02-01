@@ -1,4 +1,11 @@
+import { useEffect, useRef } from "react";
 import s from "./ScaleGallery.module.scss";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const imgURL = [
   [
@@ -22,12 +29,12 @@ const imgURL = [
     "Stadium X Turan 2020",
   ],
   [
-    "/images/scaleGallery/scaleGallery-7.jpg",
+    "/images/scaleGallery/scaleGallery-9.jpg",
     "Cassie Junior",
     "Stadium X Turan 2020",
   ],
   [
-    "/images/scaleGallery/scaleGallery-2.jpg",
+    "/images/scaleGallery/scaleGallery-7.jpg",
     "Cassie Junior",
     "Stadium X Turan 2020",
   ],
@@ -39,49 +46,119 @@ const imgURL = [
 ];
 
 export default function ScaleGallery() {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      const container = containerRef.current;
+
+      // Calculer la largeur totale du contenu
+      const totalWidth = container.offsetWidth - window.innerWidth;
+
+      let scrollTween = gsap.to(container, {
+        x: -totalWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${totalWidth}`,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (self.progress < 0.5) {
+              gsap.to(textRef.current, {
+                scale: 1 - self.progress,
+                xPercent: -50 * self.progress,
+                yPercent: -50 * self.progress,
+              });
+            }
+          },
+        },
+      });
+
+      const images = container.querySelectorAll("[data-gallery-img]");
+
+      // Animation pour chaque image
+      images.forEach((img, i) => {
+        gsap.to(img, {
+          autoAlpha: 1,
+          scale: 0.6,
+          ease: "slow(0.2, 0.7, false)",
+          scrollTrigger: {
+            trigger: img,
+            containerAnimation: scrollTween,
+            start: "left 100%",
+            end: "+=150%",
+            scrub: true,
+          },
+        });
+      });
+    },
+    [],
+    { scope: sectionRef }
+  );
   return (
     <>
-      <nav className={s.nav}>
-        <span className={s.nav__item}>+</span>
-        <span>PROJECTS</span>
-        <span>ABOUT</span>
-        <span>CONTACT</span>
-      </nav>
-      <h1 className={s.title}>Scale Gallery</h1>
-      <section className={s.gallery}>
-        <div className={s.gallery__firstSection}>
-          <p className={s.gallery__firstSection__text}>
-            Collection of differents scales. <br />
-            Transform : scale you can use it. <br />
-            For easy and beautiful animations. <br />
-            Just explore.
-          </p>
-
-          <div className={s.gallery__firstSection__bottom}>
-            <span className={s.gallery__firstSection__bottom__firstline}>
-              DEV
-            </span>
-            <span className={s.gallery__firstSection__bottom__secondline}>
-              No. 003
+      <main className={s.scaleGallery} ref={sectionRef}>
+        <nav className={s.nav}>
+          <div className={s.nav__ctn}>
+            <span data-nav-item>CONTACT</span>
+            <span data-nav-item>ABOUT</span>
+            <span data-nav-item>PROJECTS</span>
+            <span className={s.nav__item} data-nav-item>
+              +
             </span>
           </div>
-        </div>
-        <div className={s.gallery__gallerySection}>
-          {imgURL.map((img, i) => (
-            <div key={i} className={s.gallery__gallerySection__imgContainer}>
-              <img
-                src={img[0]}
-                alt={img[1]}
-                className={s.gallery__gallerySection__img}
-              />
-              <div className={s.gallery__gallerySection__text}>
-                <span>{img[1]}</span>
-                <span>{img[2]}</span>
+        </nav>
+        <h1 className={s.title} ref={textRef}>
+          Scale Gallery
+        </h1>
+        <section className={s.gallery} ref={containerRef}>
+          <div className={s.gallery__firstSection}>
+            <div className={s.gallery__firstSection__ctn}>
+              <p className={s.gallery__firstSection__ctn__text}>
+                Collection of differents scales. <br />
+                Transform : scale you can use it. <br />
+                For easy and beautiful animations. <br />
+                Just explore.
+              </p>
+
+              <div className={s.gallery__firstSection__ctn__bottom}>
+                <span
+                  className={s.gallery__firstSection__ctn__bottom__firstline}
+                >
+                  DEV
+                </span>
+                <span
+                  className={s.gallery__firstSection__ctn__bottom__secondline}
+                >
+                  No. 003
+                </span>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+          <div className={s.gallery__gallerySection}>
+            {imgURL.map((img, i) => (
+              <div key={i} className={s.gallery__gallerySection__imgContainer}>
+                <img
+                  src={img[0]}
+                  alt={img[1]}
+                  className={s.gallery__gallerySection__img}
+                  data-gallery-img
+                  loading="eager"
+                />
+                <div className={s.gallery__gallerySection__text}>
+                  <span>{img[1]}</span>
+                  <span>{img[2]}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
     </>
   );
 }

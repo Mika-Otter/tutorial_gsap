@@ -1,0 +1,113 @@
+@use "/public/styles/theme.scss" as *;
+
+.scaleGallery {
+  background-color: #fbfbf9;
+  height: 100dvh;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fbfbf9;
+  border-left: 1px solid #080808;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  writing-mode: sideways-rl;
+  -webkit-writing-mode: sideways-rl;
+  transform: rotate(180deg);
+  height: 100vh;
+  width: 3vw;
+  font-size: 1.2vw;
+  padding-bottom: 3vh;
+  font-family: "OldStandardTT-Regular";
+  &__ctn {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+  }
+  &__item {
+    font-size: 2.4vw;
+  }
+}
+
+.title {
+  font-family: "OldStandardTT-Regular";
+  font-weight: 400;
+  color: #fff;
+  mix-blend-mode: difference;
+  position: fixed;
+  z-index: 10;
+  top: 1vh;
+  left: 5vw;
+  font-size: 14vw;
+}
+
+.gallery {
+  content-visibility: visible;
+  display: flex;
+  height: 100svh;
+  width: calc(75vw + 33vw * 7);
+  font-family: "OldStandardTT-Regular";
+  &__firstSection {
+    width: 80vw;
+    border-right: 1px solid #080808;
+    position: relative;
+    height: 100vh;
+    &__ctn {
+      width: 70vw;
+      height: 60vh;
+      position: absolute;
+      bottom: 1vh;
+      right: 0;
+
+      &__text {
+        margin-left: 10vw;
+        font-size: 1.3vw;
+      }
+
+      &__bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        &__firstline {
+          margin-left: 0.5vw;
+          font-size: 3vw;
+          height: 3vw;
+        }
+
+        &__secondline {
+          height: 11vw;
+          line-height: 1;
+          font-size: 13vw;
+        }
+      }
+    }
+  }
+
+  &__gallerySection {
+    display: flex;
+
+    &__imgContainer {
+      width: 33vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #080808;
+
+      img {
+        will-change: transform;
+        width: 90%;
+        aspect-ratio: 3/5;
+        object-fit: cover;
+      }
+    }
+  }
+}
