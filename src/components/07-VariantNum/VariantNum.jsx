@@ -48,7 +48,7 @@ export default function VariantNum() {
         </div>
       </div>
       <div className={s.variantNum__footer}>
-        <span>BASICS #004</span>{" "}
+        <span>BASICS #004</span>
       </div>
     </main>
   );

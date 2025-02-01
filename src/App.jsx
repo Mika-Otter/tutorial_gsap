@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./global.scss";
 import gsap from "gsap";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
-import InfiniteScrollGallery from "./components/05-InfiniteScrollGallery/InfiniteScrollGallery";
-import Gallery from "./components/05-InfiniteScrollGallery/Gallery";
-import LoaderGallery from "./components/05-InfiniteScrollGallery/LoaderGallery";
-import VariantNum from "./components/07-VariantNum/VariantNum";
+import ScaleGallery from "./components/08-ScaleGallery/ScaleGallery";
 
 export default function App() {
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
@@ -33,15 +30,19 @@ export default function App() {
       }}
       root
     >
-      {/* <LoaderGallery />
-      <InfiniteScrollGallery />
-      <Gallery /> */}
-      <VariantNum />
+      <ScaleGallery />
     </ReactLenis>
   );
 }
 
 // Comps for other tutorials
+
+//// VarientNum
+// import VariantNum from "./components/07-VariantNum/VariantNum";
+{
+  /* <VariantNum /> */
+}
+
 //// CliphPathLoader
 // import ClipPathLoader from "./components/02-ClipPathLoader/ClipPathLoader";
 {
@@ -94,7 +95,7 @@ export default function App() {
 
 // $counter = 1
 // $files = Get-ChildItem -Path "." -File
-// $name = "VotreNomDeFichier"
+// $name = "scaleGallery"
 
 // foreach ($file in $files) {
 //     $extension = $file.Extension
