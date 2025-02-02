@@ -10,38 +10,38 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const imgURL = [
   [
     "/images/scaleGallery/scaleGallery-4.jpg",
-    "Maria Sullivan Studio",
-    "NY Spring 2020",
+    "Elias Verdoux Studio",
+    "Milan Fashion Gala 2022",
   ],
   [
     "/images/scaleGallery/scaleGallery-6.jpg",
-    "No 291 Dave Sullivan",
-    "Paris fashion week 2019",
+    "Atelier Noire",
+    "London Avant-Garde 2021",
   ],
   [
     "/images/scaleGallery/scaleGallery-5.jpg",
-    "Cassie Junior",
-    "Stadium X Turan 2020",
+    "Lucien Carter",
+    "Berlin Fashion Chronicles 2020",
   ],
   [
     "/images/scaleGallery/scaleGallery-1.jpg",
-    "Cassie Junior",
-    "Stadium X Turan 2020",
+    "Maison Althaus",
+    "Tokyo Midnight Runway 2019",
   ],
   [
     "/images/scaleGallery/scaleGallery-9.jpg",
-    "Cassie Junior",
-    "Stadium X Turan 2020",
+    "Nova Sinclair",
+    "Seoul Couture Week 2023",
   ],
   [
     "/images/scaleGallery/scaleGallery-7.jpg",
-    "Cassie Junior",
-    "Stadium X Turan 2020",
+    "Opal & Co.",
+    "Los Angeles Sunset Walk 2021",
   ],
   [
     "/images/scaleGallery/scaleGallery-3.jpg",
-    "Cassie Junior",
-    "Stadium X Turan 2020",
+    "Vermeer Collective",
+    "Copenhagen Minimalist Show 2022",
   ],
 ];
 
@@ -53,6 +53,15 @@ export default function ScaleGallery() {
   const firstSectionRef = useRef(null);
   const firstImageRef = useRef(null);
 
+  useEffect(() => {
+    imgURL.forEach(([src]) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.href = src;
+      link.as = "image";
+      document.head.appendChild(link);
+    });
+  }, []);
   useGSAP(
     () => {
       const tlStart = gsap.timeline({ paused: true });
@@ -95,15 +104,25 @@ export default function ScaleGallery() {
         )
         .from(firstSectionRef.current, {
           scaleY: 0,
-          duration: 1,
+          duration: 0.8,
+        })
+        .from(
+          firstImageRef.current,
+          {
+            clipPath: "inset(100% 0 100% 0)",
+            duration: 0.8,
+          },
+          "<"
+        )
+        .from("[data-gallery-text]", {
+          scaleY: 0,
+          stagger: 0.2,
         });
-
       tlStart.play();
 
       const section = sectionRef.current;
       const container = containerRef.current;
 
-      // Calculer la largeur totale du contenu
       const totalWidth = container.offsetWidth - window.innerWidth;
 
       let scrollTween = gsap.to(container, {
@@ -129,10 +148,8 @@ export default function ScaleGallery() {
 
       const images = container.querySelectorAll("[data-gallery-img]");
 
-      // Animation pour chaque image
       images.forEach((img, i) => {
         gsap.to(img, {
-          autoAlpha: 1,
           scale: 0.6,
           ease: "slow(0.2, 0.7, false)",
           scrollTrigger: {
@@ -199,9 +216,14 @@ export default function ScaleGallery() {
                   loading="eager"
                   ref={i === 0 ? firstImageRef : null}
                 />
-                <div className={s.gallery__gallerySection__text}>
+                <div
+                  className={s.gallery__gallerySection__text}
+                  data-gallery-text
+                >
                   <span>{img[1]}</span>
-                  <span>{img[2]}</span>
+                  <span className={s.gallery__gallerySection__text__subtitle}>
+                    {img[2]}
+                  </span>
                 </div>
               </div>
             ))}
