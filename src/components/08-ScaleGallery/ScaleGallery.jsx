@@ -24,7 +24,7 @@ const imgURL = [
     "Berlin Fashion Chronicles 2020",
   ],
   [
-    "/images/scaleGallery/scaleGallery-1.jpg",
+    "/images/scaleGallery/scaleGallery-2.jpg",
     "Maison Althaus",
     "Tokyo Midnight Runway 2019",
   ],
@@ -76,6 +76,7 @@ export default function ScaleGallery() {
       tlStart
         .from("[data-gallery-nav]", {
           scaleY: 0,
+          delay: 1,
           duration: 1.5,
         })
         .from(
@@ -195,12 +196,12 @@ export default function ScaleGallery() {
                 <span
                   className={s.gallery__firstSection__ctn__bottom__firstline}
                 >
-                  DEV
+                  BASICS
                 </span>
                 <span
                   className={s.gallery__firstSection__ctn__bottom__secondline}
                 >
-                  No. 003
+                  No. 005
                 </span>
               </div>
             </div>

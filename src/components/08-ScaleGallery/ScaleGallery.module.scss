@@ -73,13 +73,13 @@
       &__bottom {
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 1vw;
         display: flex;
         flex-direction: column;
         &__firstline {
           margin-left: 0.5vw;
-          font-size: 3vw;
-          height: 3vw;
+          font-size: 1.9vw;
+          height: 2vw;
         }
 
         &__secondline {
