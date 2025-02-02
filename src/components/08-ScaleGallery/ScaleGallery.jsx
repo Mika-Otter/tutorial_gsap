@@ -48,10 +48,58 @@ const imgURL = [
 export default function ScaleGallery() {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
+  const titleRef = useRef(null);
   const containerRef = useRef(null);
+  const firstSectionRef = useRef(null);
+  const firstImageRef = useRef(null);
 
   useGSAP(
     () => {
+      const tlStart = gsap.timeline({ paused: true });
+
+      const splitTitle = new SplitText(titleRef.current, {
+        type: "chars",
+      });
+
+      const splitText = new SplitText(textRef.current, {
+        type: "lines",
+      });
+      tlStart
+        .from("[data-gallery-nav]", {
+          scaleY: 0,
+          duration: 1.5,
+        })
+        .from(
+          "[data-nav-item]",
+          {
+            scaleX: 0,
+            stagger: 0.2,
+          },
+          ">"
+        )
+        .from(
+          splitTitle.chars,
+          {
+            scaleX: 0,
+            stagger: 0.05,
+          },
+          "<"
+        )
+        .from(
+          splitText.lines,
+          {
+            scaleY: 0,
+            stagger: 0.1,
+          },
+          "<"
+        )
+        .from(firstSectionRef.current, {
+          scaleY: 0,
+          duration: 1,
+        });
+
+      tlStart.play();
+
       const section = sectionRef.current;
       const container = containerRef.current;
 
@@ -69,7 +117,7 @@ export default function ScaleGallery() {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (self.progress < 0.5) {
-              gsap.to(textRef.current, {
+              gsap.to([textRef.current, titleRef.current], {
                 scale: 1 - self.progress,
                 xPercent: -50 * self.progress,
                 yPercent: -50 * self.progress,
@@ -103,7 +151,7 @@ export default function ScaleGallery() {
   return (
     <>
       <main className={s.scaleGallery} ref={sectionRef}>
-        <nav className={s.nav}>
+        <nav className={s.nav} data-gallery-nav>
           <div className={s.nav__ctn}>
             <span data-nav-item>CONTACT</span>
             <span data-nav-item>ABOUT</span>
@@ -113,13 +161,13 @@ export default function ScaleGallery() {
             </span>
           </div>
         </nav>
-        <h1 className={s.title} ref={textRef}>
+        <h1 className={s.title} ref={titleRef}>
           Scale Gallery
         </h1>
         <section className={s.gallery} ref={containerRef}>
-          <div className={s.gallery__firstSection}>
+          <div className={s.gallery__firstSection} ref={firstSectionRef}>
             <div className={s.gallery__firstSection__ctn}>
-              <p className={s.gallery__firstSection__ctn__text}>
+              <p className={s.gallery__firstSection__ctn__text} ref={textRef}>
                 Collection of differents scales. <br />
                 Transform : scale you can use it. <br />
                 For easy and beautiful animations. <br />
@@ -149,6 +197,7 @@ export default function ScaleGallery() {
                   className={s.gallery__gallerySection__img}
                   data-gallery-img
                   loading="eager"
+                  ref={i === 0 ? firstImageRef : null}
                 />
                 <div className={s.gallery__gallerySection__text}>
                   <span>{img[1]}</span>
