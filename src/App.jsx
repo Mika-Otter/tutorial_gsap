@@ -3,10 +3,13 @@ import "./global.scss";
 import gsap from "gsap";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import ScaleGallery from "./components/08-ScaleGallery/ScaleGallery";
+import Home from "./components/01-NotchLoader/Home/Home";
+import NotchLoader from "./components/01-NotchLoader/NotchLoader/NotchLaoder";
 
 export default function App() {
-  const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
+  const mainTimeline = useRef(gsap.timeline({ paused: true }));
   const lenisRef = useRef(null);
+  const [isLoader, setIsLoader] = useState(true);
 
   useEffect(() => {
     function update(time) {
@@ -17,21 +20,28 @@ export default function App() {
   }, []);
 
   return (
-    <ReactLenis
-      ref={lenisRef}
-      options={{
-        duration: 0.6,
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 0.8,
-        touchMultiplier: 2,
-        infinite: false,
-      }}
-      root
-    >
-      <ScaleGallery />
-    </ReactLenis>
+    <>
+      <Home timeline={mainTimeline} />
+      {isLoader && (
+        <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
+      )}
+    </>
+
+    // <ReactLenis
+    //   ref={lenisRef}
+    //   options={{
+    //     duration: 0.6,
+    //     orientation: "vertical",
+    //     gestureOrientation: "vertical",
+    //     smoothWheel: true,
+    //     wheelMultiplier: 0.8,
+    //     touchMultiplier: 2,
+    //     infinite: false,
+    //   }}
+    //   root
+    // >
+    //   <ScaleGallery />
+    // </ReactLenis>
   );
 }
 

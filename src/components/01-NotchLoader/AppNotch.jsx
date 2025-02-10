@@ -9,10 +9,10 @@ export default function AppNotch() {
   const mainTimeline = useRef(gsap.timeline({ paused: true }));
   return (
     <>
+      <Home timeline={mainTimeline} />
       {isLoader && (
         <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
       )}
-      <Home timeline={mainTimeline} />
     </>
   );
 }
