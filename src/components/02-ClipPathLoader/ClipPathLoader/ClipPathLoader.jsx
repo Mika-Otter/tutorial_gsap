@@ -1,45 +1,50 @@
 import React, { useRef, useState } from "react";
 import s from "./ClipPathLoader.module.scss";
-import Loader from "./components/Loader";
+import Loader from "../Loader/Loader";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function ClipPathLoader() {
   const [isLoader, setIsLoader] = useState(true);
+  const mainRef = useRef(null);
 
   const [mainTimeline] = useState(() => gsap.timeline({ paused: true }));
 
-  useGSAP(() => {
-    mainTimeline
-      .from(
-        "[data-clippath-item]",
-        {
-          duration: 0.6,
-          y: 30,
-          opacity: 0,
-          ease: "power2.inOut",
-        },
-        "loaderComplete"
-      )
-      .from(
-        "[data-clippath-img]",
-        {
-          clipPath: "inset(100% 0 0 0)",
-          duration: 1,
-          ease: "power2.out",
-          stagger: {
-            amount: 0.8,
+  useGSAP(
+    () => {
+      mainTimeline
+        .from(
+          "[data-clippath-item]",
+          {
+            duration: 0.6,
+            y: 30,
+            opacity: 0,
+            ease: "power2.inOut",
           },
-        },
-        "<-0.1"
-      );
-  });
+          "loaderComplete"
+        )
+        .from(
+          "[data-clippath-img]",
+          {
+            clipPath: "inset(100% 0 0 0)",
+            duration: 1,
+            ease: "power2.out",
+            stagger: {
+              amount: 0.8,
+            },
+          },
+          "<-0.1"
+        );
+    },
+    [],
+    { scope: mainRef }
+  );
 
   return (
     <>
       {isLoader && <Loader setIsLoader={setIsLoader} timeline={mainTimeline} />}
       <main className={s.clipPathLoader}>
-        <nav className={s.nav}>
+        <nav className={s.nav} ref={mainRef}>
           <span className={s.nav__logo} data-clippath-item>
             [AL Photography]
           </span>
