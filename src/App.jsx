@@ -5,6 +5,7 @@ import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import ScaleGallery from "./components/08-ScaleGallery/ScaleGallery";
 import Home from "./components/01-NotchLoader/Home/Home";
 import NotchLoader from "./components/01-NotchLoader/NotchLoader/NotchLaoder";
+import MenuExploration from "./components/09-MenuExploration/MenuExploration";
 
 export default function App() {
   const mainTimeline = useRef(gsap.timeline({ paused: true }));
@@ -21,10 +22,11 @@ export default function App() {
 
   return (
     <>
-      <Home timeline={mainTimeline} />
+      <MenuExploration />
+      {/* <Home timeline={mainTimeline} />
       {isLoader && (
         <NotchLoader setIsLoader={setIsLoader} timeline={mainTimeline} />
-      )}
+      )} */}
     </>
 
     // <ReactLenis

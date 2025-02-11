@@ -101,3 +101,14 @@
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "SuisseIntl-Bold";
+  src: url("../fonts/SuisseIntl-Bold.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexMono-Regular";
+  src: url("../fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-display: swap;
+}
